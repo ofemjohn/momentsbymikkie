@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1000" viewBox="0 0 1500 1000">
+  <defs>
+    <linearGradient id="g-ev11bw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11110F" />
+      <stop offset="100%" stop-color="#887668" />
+    </linearGradient>
+    <pattern id="g-ev11bw-lines" width="28" height="28" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="28" stroke="#F4F0E9" stroke-opacity="0.05" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="1500" height="1000" fill="url(#g-ev11bw)" />
+  <rect width="1500" height="1000" fill="url(#g-ev11bw-lines)" />
+  <rect x="0.5" y="0.5" width="1499" height="999" fill="none" stroke="#F4F0E9" stroke-opacity="0.14" />
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, Arial, sans-serif" font-size="42" letter-spacing="6" fill="#FAF8F4" fill-opacity="0.82" font-weight="600">EVENTS</text>
+  <text x="50%" y="568" text-anchor="middle" dominant-baseline="middle" font-family="Manrope, Arial, sans-serif" font-size="24" letter-spacing="5" fill="#FAF8F4" fill-opacity="0.5">PLACEHOLDER</text>
+</svg>

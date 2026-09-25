@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --color-near-black: #11110f;
+  --color-charcoal: #191917;
+  --color-warm-cream: #f4f0e9;
+  --color-warm-white: #faf8f4;
+  --color-taupe: #a99d8d;
+  --color-muted-brown: #887668;
+  --color-ink: #191816;
+
+  --border-dark-subtle: rgba(25, 24, 22, 0.15);
+  --border-light-subtle: rgba(255, 255, 255, 0.18);
+}
+
+@theme inline {
+  --color-near-black: var(--color-near-black);
+  --color-charcoal: var(--color-charcoal);
+  --color-warm-cream: var(--color-warm-cream);
+  --color-warm-white: var(--color-warm-white);
+  --color-taupe: var(--color-taupe);
+  --color-muted-brown: var(--color-muted-brown);
+  --color-ink: var(--color-ink);
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-manrope), "Manrope", sans-serif;
+  --font-signature: var(--font-signature), "Petit Formal Script", cursive;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.8s ease forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-warm-white);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reveal-on-scroll utility: JS toggles [data-revealed] once IntersectionObserver fires */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+::selection {
+  background: var(--color-near-black);
+  color: var(--color-warm-white);
+}
+
+/* Thin, editorial focus ring instead of the default browser outline */
+:focus-visible {
+  outline: 1.5px solid var(--color-near-black);
+  outline-offset: 3px;
+}
