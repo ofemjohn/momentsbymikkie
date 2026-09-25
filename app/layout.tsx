@@ -57,7 +57,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${cormorant.variable} ${manrope.variable} ${signature.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-warm-white text-ink">{children}</body>
+      <body
+        className="min-h-full flex flex-col bg-warm-white text-ink"
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
     </html>
   );
 }
