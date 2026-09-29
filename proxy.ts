@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { SESSION_COOKIE, verifySessionToken } from "@/lib/session";
+import { ADMIN_SESSION_SECRET } from "@/lib/admin-config";
 
 const PUBLIC_ADMIN_PATHS = new Set(["/admin/login", "/api/admin/login", "/api/admin/logout"]);
 
@@ -11,9 +12,8 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const secret = process.env.ADMIN_SESSION_SECRET;
   const token = request.cookies.get(SESSION_COOKIE)?.value;
-  const valid = secret ? await verifySessionToken(token, secret) : false;
+  const valid = await verifySessionToken(token, ADMIN_SESSION_SECRET);
 
   if (valid) {
     return NextResponse.next();
