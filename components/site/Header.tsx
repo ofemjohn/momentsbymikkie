@@ -16,16 +16,26 @@ const socialLinks = [
   { href: siteConfig.facebook, label: "Facebook", Icon: FacebookIcon },
 ].filter((link) => link.href);
 
-export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+type HeaderProps = {
+  /**
+   * true (default): the homepage hero look — starts transparent, turns
+   * solid on scroll. false: always solid, for pages with no hero behind
+   * the header (e.g. /invoice/[slug]).
+   */
+  overlay?: boolean;
+};
+
+export function Header({ overlay = true }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(!overlay);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!overlay) return;
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [overlay]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -44,7 +54,9 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 sm:px-8 lg:px-12">
-        <a href="#top" aria-label="momentsbymikkie — back to top">
+        {/* Plain <a>, not next/link: reliable native fragment scroll, see Button.tsx */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a href="/#top" aria-label="momentsbymikkie — back to top">
           <Logo theme={scrolled ? "light" : "dark"} className="text-[0.95rem] sm:text-base" />
         </a>
 
@@ -85,7 +97,7 @@ export function Header() {
             </ul>
           ) : null}
           <Button
-            href="#contact"
+            href="/#contact"
             variant={scrolled ? "outline" : "outline-inverse"}
             className="px-6 py-2.5 text-[0.65rem]"
           >

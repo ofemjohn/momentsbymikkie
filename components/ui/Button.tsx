@@ -51,6 +51,10 @@ export function Button(props: ButtonAsButton | ButtonAsAnchor) {
   if ("href" in props && props.href) {
     const { href, ...anchorRest } = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
     return (
+      // All current hrefs are either external (mailto/tel/wa.me) or same-site
+      // "/#section" anchors. Plain <a> gives reliable native fragment
+      // scrolling in both cases (same-page and cross-page from /invoice/*)
+      // without depending on next/link's hash-scroll heuristics.
       <a href={href} className={classes} {...anchorRest}>
         {content}
       </a>

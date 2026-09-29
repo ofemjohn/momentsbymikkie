@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { navItems, siteConfig } from "@/data/site";
 import { FacebookIcon, InstagramIcon, TikTokIcon, YoutubeIcon } from "@/components/icons/SocialIcons";
@@ -15,9 +16,9 @@ export function Footer() {
   return (
     <footer className="bg-near-black py-14">
       <div className="mx-auto flex max-w-[1600px] flex-col items-center gap-10 px-5 text-center sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:text-left lg:px-12">
-        <div className="flex flex-col items-center gap-1 lg:items-start">
+        <Link href="/" className="flex flex-col items-center gap-1 lg:items-start">
           <Logo theme="dark" layout="stacked" className="text-base" />
-        </div>
+        </Link>
 
         <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           {navItems.map((item) => (

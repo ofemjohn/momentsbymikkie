@@ -24,12 +24,15 @@ export type NavItem = {
   href: string;
 };
 
+// Rooted at "/" (not bare "#id") so these work correctly both on the
+// homepage (same-document hash scroll) and from other routes like
+// /invoice/[slug] (navigates home, then scrolls to the section).
 export const navItems: NavItem[] = [
-  { label: "Work", href: "#featured-work" },
-  { label: "Films", href: "#films" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#featured-work" },
+  { label: "Films", href: "/#films" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function whatsappHref(number: string, message?: string) {
