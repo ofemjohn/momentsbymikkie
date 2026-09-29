@@ -56,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${cormorant.variable} ${manrope.variable} ${signature.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body
         className="min-h-full flex flex-col bg-warm-white text-ink"

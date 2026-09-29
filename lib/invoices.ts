@@ -68,13 +68,19 @@ export async function listInvoices(): Promise<InvoiceRecord[]> {
 }
 
 export async function getInvoice(slug: string): Promise<InvoiceRecord | null> {
-  const { blobs } = await list({ prefix: `invoices/${slug}/` });
-  const metaBlob = blobs.find((b) => b.pathname.endsWith("/meta.json"));
-  if (!metaBlob) return null;
+  try {
+    const { blobs } = await list({ prefix: `invoices/${slug}/` });
+    const metaBlob = blobs.find((b) => b.pathname.endsWith("/meta.json"));
+    if (!metaBlob) return null;
 
-  const res = await fetch(metaBlob.url, { cache: "no-store" });
-  if (!res.ok) return null;
-  return (await res.json()) as InvoiceRecord;
+    const res = await fetch(metaBlob.url, { cache: "no-store" });
+    if (!res.ok) return null;
+    return (await res.json()) as InvoiceRecord;
+  } catch {
+    // Storage not configured, or transiently unreachable — treat like "not found"
+    // rather than crashing this public, client-facing page.
+    return null;
+  }
 }
 
 export async function deleteInvoice(slug: string): Promise<void> {
